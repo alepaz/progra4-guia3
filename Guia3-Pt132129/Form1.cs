@@ -23,10 +23,12 @@ namespace Guia3_Pt132129
         int[] arreglo_numeros; //Definimos un arreglo de enteros, que contendra los datos a ordenar
         Button[] arreglo; //Definimos un arreglo de botones, que nos ayudara para la simulacion
         Numero Dato = new Numero();
+        int duracion = 0;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //Intervalo en milisegundos
+            timer1.Interval = 1000;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -105,6 +107,10 @@ namespace Guia3_Pt132129
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
+            duracion = 0;
+            //Inicio de timmer
+            timer1.Start();
+            
             this.Cursor = Cursors.WaitCursor; //Cambiamos la apariencia del cursos al modo espera
             btnOrdenar.Enabled = false;
             txtNumero.Enabled = false;
@@ -117,6 +123,8 @@ namespace Guia3_Pt132129
             btnOrdenar.Enabled = true;
             txtNumero.Enabled = true;
             btnAgregar.Enabled = true;
+            //Finalizar timmer
+            timer1.Stop();
         }
 
         public void Intercambio(ref Button[] boton, int a, int b)
@@ -165,6 +173,10 @@ namespace Guia3_Pt132129
         {
             this.Cursor = Cursors.WaitCursor; //Pausar cursor
 
+            duracion = 0;
+            //Inicio de timmer
+            timer1.Start();
+
             //Cambio de estado de controlles
             btnOrdenar.Enabled = false;
             txtNumero.Enabled = false;
@@ -179,7 +191,7 @@ namespace Guia3_Pt132129
             txtNumero.Enabled = true;
             btnAgregar.Enabled = true;
             txtNumero.Focus();
-
+            timer1.Stop();
         }
 
         public void InsertionSort(ref int[] arreglo_Numeros, ref Button[] arreglo)
@@ -250,6 +262,10 @@ namespace Guia3_Pt132129
 
         private void button2_Click(object sender, EventArgs e)
         {
+            duracion = 0;
+            //Inicio de timmer
+            timer1.Start();
+            
             this.Cursor = Cursors.WaitCursor; //Pausar cursor
 
             //Cambio de estado de controlles
@@ -266,6 +282,15 @@ namespace Guia3_Pt132129
             txtNumero.Enabled = true;
             btnAgregar.Enabled = true;
             txtNumero.Focus();
+            timer1.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //Incremento del contador
+            duracion++;
+            //mostrar en el label el contador
+            lblTime.Text = duracion.ToString();
         }
 
 
